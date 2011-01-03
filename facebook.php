@@ -31,7 +31,7 @@ $xmlresult= '<?xml version="1.0" encoding="ISO-8859-1"?>
 //<atom:link href="http://www.debatevisual.com/code/facebook.php" rel="self" type="application/rss+xml" />';
 
 //if no posts limit given, use all
-$limit = (strlen($limit)>0)? $limit : count($data->data)-1;
+$limit = (strlen($limit)>0)? $limit : count($data->data);
 
 //$limit=9;
 //loop posts
