@@ -47,11 +47,12 @@ for ($i=0; $i<$limit;$i++){
 	$created_time = $data->data[$i]->created_time;
 	$id = $data->data[$i]->id;
 	$likes = $data->data[$i]->likes->count;
+	$commentCount = $data->data[$i]->comments->count;
 
 	//loop to get comments
 	$comments = '';
-	if (count($data->data[$i]->comments->data)>0){
-		$comments = '<div style="margin:10px 0 0 20px;display:block;padding:5px;background-color:#f7f7f7;">Last Comments:';
+	if ($commentCount>0){
+		$comments = '<div style="margin:10px 0 0 20px;display:block;padding:5px;background-color:#f7f7f7;">Last Comments: ('.$commentCount.' total)';
 		$j=0;
 		while ($j<count($data->data[$i]->comments->data)){
 			$commentName = $data->data[$i]->comments->data[$j]->from->name;
