@@ -46,7 +46,7 @@ for ($i=0; $i<$limit;$i++){
 	$caption = $data->data[$i]->caption;
 	$created_time = $data->data[$i]->created_time;
 	$id = $data->data[$i]->id;
-	$likes = $data->data[$i]->likes->data;
+	$likes = $data->data[$i]->likes->count;
 
 	//loop to get comments
 	$comments = '';
@@ -67,7 +67,7 @@ for ($i=0; $i<$limit;$i++){
 	$picture = '';
 	if (strlen($pictureUrl)>0)$picture = '<a href="'.$link.'" target="_blank"><img alt="" border="0" src="'.utf8_decode($pictureUrl).'"  align="left" style="padding-right:5px;"/></a>';
 	
-	$likes = (count($likes)>1)? $likes = '<i>'.count($likes).' people like this</i>' : $likes = (count($likes)>0)? $likes = '<i>'.count($likes).' person likes this</i>' : '';;
+	$likes = ($likes>1)? '<i>'.$likes.' people like this</i>' : $likes = ($likes>0)? '<i>'.$likes.' person likes this</i>' : '';;
 	
 	
 	//transforms all info into html formatting
@@ -81,6 +81,9 @@ for ($i=0; $i<$limit;$i++){
 		
 		<br />'.utf8_decode(($description));
 		$message .='<div style="clear:both"></div>'.$likes.'</div>';	
+	}
+	else{
+		$message .= '<br />'.$likes;	
 	}
 	
 	//convert facebook create_time format into RFC 822 rss compatible format
